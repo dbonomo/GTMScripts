@@ -1,0 +1,45 @@
+IF the data is available upon pageView
+<script>
+dataLayer.push({
+  'ecommerce': {
+    'promoView': {
+      'promotions': [                     // Array of promoFieldObjects.
+       {
+         'id': 'BFCM_2017_88c.website_1st_yr',            // ID or Name is required.
+         'name': '$.88 .website 1st yr',
+         'creative': 'coupon redemption page',
+         'position': 'slot1'
+       },
+       {
+         'id': 'BFCM_2017_2.88c_hosting_1st_yr',
+         'name': '$2.88 hosting 1st yr',
+         'creative': 'coupon redemption page',
+         'position': 'slot2'
+       }]
+    }
+  }
+});
+</script>
+
+If the data is not available pageView
+<script>
+dataLayer.push({
+  'event': 'promoView',
+  'ecommerce': {
+    'promoView': {
+      'promotions': [                     // Array of promoFieldObjects.
+        {
+          'id': 'BFCM_2017_88c.website_1st_yr',            // ID or Name is required.
+          'name': '$.88 .website 1st yr',
+          'creative': 'coupon redemption page',
+          'position': 'slot1'
+        }]
+    }
+  }
+});
+</script>
+
+Promotion ID = coupon category type
+Coupon Code = unique coupon code
+
+Ask Sudharshan about existance of Promtion ID
