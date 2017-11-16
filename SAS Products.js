@@ -6,7 +6,7 @@ function() {
 
   var i, len;
   for (i = 0, len = items.length; i < len; i++) {
-    var prodName = items[i].name;
+    var prodName = items[i].category;
     var prodPrice = items[i].price;
     var prodQty = items[i].quantity;
     skulist.push(prodName);
