@@ -4,7 +4,7 @@ function() {
   var i, len;
   for (i = 0, len = items.length; i < len; i++) {
     var counter = i+1;
-    var prodName = items[i].name;
+    var prodName = items[i].category;
     // replace periods with nothing
     var prodName = prodName.replace(/\./g,'');
     // replace spaces with underscore
