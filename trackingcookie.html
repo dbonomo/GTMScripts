@@ -1,0 +1,21 @@
+<script>
+ var currentCookie = document.cookie.attribution;
+ var currentGTM
+ var currentGclid
+
+ if (currentCookie) {
+
+ } else {
+
+ }
+ var cookieName = "attribution"; // Name of your cookie
+ var cookieValue = "true"; // Value of your cookie
+ var expirationTime = 2592000; // One month in seconds
+ expirationTime = expirationTime * 1000; // Converts expirationtime to milliseconds
+ var date = new Date();
+ var dateTimeNow = date.getTime();
+ date.setTime(dateTimeNow + expirationTime); // Sets expiration time (Time now + one month)
+ var expirationTime = date.toUTCString(); // Converts milliseconds to UTC time string
+ document.cookie = cookieName+"="+cookieValue+"; expires="+expirationTime+"; path=/; domain=." + location.hostname.replace(/^www\./i, ""); // Sets cookie for all subdomains
+
+</script>

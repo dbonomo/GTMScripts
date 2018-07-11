@@ -1,0 +1,59 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2018-03-30 14:56:46",
+    "containerVersion": {
+        "path": "accounts/28896164/containers/6101009/versions/0",
+        "accountId": "28896164",
+        "containerId": "6101009",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/28896164/containers/6101009",
+            "accountId": "28896164",
+            "containerId": "6101009",
+            "name": "SPA GTM Campaign Attribution Fix",
+            "publicId": "GTM-PRLPDGQ",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1522421560948",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/28896164/containers/6101009/workspaces?apiLink=container"
+        },
+        "variable": [
+            {
+                "accountId": "28896164",
+                "containerId": "6101009",
+                "variableId": "13",
+                "name": "JS - customTask - Null Conflicting Referrers",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function () {\n\n  var version = 1;\n\n  return function(model) {\n\n    var referrerCookie = getCookie('_ga-ss');\n    var hasCampaignParams = document.location.href.match(/(d|g)clid|utm_source/);\n    var referrer = {{Referrer}};\n    var uaNum = model.get('trackingId');\n    var cache = {};\n    var uaNums = [];\n    var storedRef,\n        storedVersion,\n        parts,\n        i;\n\n  \tif (!referrerCookie && !hasCampaignParams) return;\n    \n    if (referrerCookie) {\n      \n      parts = referrerCookie.split('|');\n      storedVersion = Number(parts[0]);\n\n      if (version === storedVersion) {\n\n        uaNums = parts[1].length ? parts[1].split(',') : uaNums\n        storedRef = decodeURIComponent(parts[2]);\n\n        for (i = 0; i < uaNums.length; i++) cache[uaNums[i]] = true;\n\n      }\n\n      if (!referrer) return setRefCookie(uaNums, storedRef);\n\n    }\n\n    if (storedRef === referrer) {\n\n      if (cache[uaNum]) {\n        model.set('referrer', null);\n      } else {\n        uaNums.push(uaNum);\n      }\n\n    } else {\n\n      // New referrer and no campaign params, we can dump the cookie entirely\n      if (!hasCampaignParams) {\n\n        document.cookie = '_ga-ss=; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Path=/'; \n              \n      } else {\n\n        uaNums = [uaNum];\n        setRefCookie(uaNums, referrer)\n      \n      }\n      \n    }\n\n  };\n\n  function setRefCookie(uaNums, referrer) {\n\n    document.cookie = \"_ga-ss=\" +\n      [version, uaNums.join(), encodeURIComponent(referrer)].join('|') +\n      \"; Expires=\" + new Date(+new Date() + 1000 * 60 * 30).toGMTString() +\n      \"; Path=/\";\n  \n  }\n\n  function getCookie(cookieName) {\n   \n    cookieName = \"; \" + cookieName + \"=\";\n    var cookieStr = \"; \" + document.cookie;\n    \n    if (cookieStr.indexOf(cookieName) > -1) {\n     \n      return cookieStr.split(cookieName)[1].split(';')[0];\n      \n    }\n    \n  }\n  \n}"
+                    }
+                ],
+                "fingerprint": "1522421568541",
+                "parentFolderId": "14"
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "28896164",
+                "containerId": "6101009",
+                "folderId": "14",
+                "name": "SPA Campaign Attribution Fix",
+                "fingerprint": "1522421554369"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "28896164",
+                "containerId": "6101009",
+                "type": "REFERRER",
+                "name": "Referrer"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/28896164/containers/6101009/versions/0?apiLink=version"
+    }
+}
